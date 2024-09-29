@@ -4,6 +4,8 @@ Now, let's look up the data
 
 - ## Product_emissions
 ```
+SELECT * FROM product_emissions LIMIT 5;
+```
 
 
   
@@ -23,6 +25,7 @@ Now, let's look up the data
 SELECT product_name,carbon_footprint_pcf FROM product_emissions GROUP BY product_name
 ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 ```
+
 | product_name                                                                                                                       | carbon_footprint_pcf | 
 | ---------------------------------------------------------------------------------------------------------------------------------: | -------------------: | 
 | Wind Turbine G128 5 Megawats                                                                                                       | 3718044              | 
