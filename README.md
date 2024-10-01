@@ -3,7 +3,7 @@
 Now, let's look up the data
 
 - ## Product_emissions
-```
+```sql
 SELECT * FROM product_emissions LIMIT 5;
 ```
 
