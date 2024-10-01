@@ -149,4 +149,31 @@ GROUP BY com.company_name ORDER BY carbon_footprint_pcf DESC LIMIT 1;
 | "Gamesa Corporación Tecnológica, S.A." | 
 
 
+## the countries with the highest contribution to carbon emissions
+```SQL
+SELECT
+	c.country_name, carbon_footprint_pcf
+FROM countries c
+JOIN product_emissions product 
+ON
+c.id=product.country_id
+GROUP BY c.country_name ORDER BY carbon_footprint_pcf DESC LIMIT 10; 
+```
+
+| country_name | carbon_footprint_pcf | 
+| -----------: | -------------------: | 
+| Germany      | 21725                | 
+| South Korea  | 5846                 | 
+| Brazil       | 1750                 | 
+| Japan        | 1488                 | 
+| India        | 1282                 | 
+| Netherlands  | 1200                 | 
+| France       | 1102                 | 
+| South Africa | 968                  | 
+| Ireland      | 746                  | 
+| Indonesia    | 721                  | 
+
+
+
+
 
