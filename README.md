@@ -113,3 +113,40 @@ ORDER BY carbon_footprint_pcf DESC) LIMIT 10;
 
 
 
+## the industries with the highest contribution to carbon emissions
+
+```sql
+SELECT
+	 indust.industry_group  
+FROM industry_groups indust
+JOIN product_emissions product 
+ON
+product.industry_group_id=indust.id
+WHERE product.product_name IN
+(SELECT product_name FROM product_emissions GROUP BY product_name
+ORDER BY carbon_footprint_pcf DESC) LIMIT 1;
+```
+
+| industry_group             | 
+| -------------------------: | 
+| "Food, Beverage & Tobacco" | 
+
+
+## the companies with the highest contribution to carbon emissions
+
+```SQL
+SELECT
+	com.company_name
+FROM companies com
+JOIN product_emissions product 
+ON
+com.id=product.company_id
+GROUP BY com.company_name ORDER BY carbon_footprint_pcf DESC LIMIT 1;
+```
+
+| company_name                           | 
+| -------------------------------------: | 
+| "Gamesa Corporación Tecnológica, S.A." | 
+
+
+
