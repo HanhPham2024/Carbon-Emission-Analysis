@@ -16,7 +16,7 @@ SELECT * FROM product_emissions LIMIT 5;
 | 10261-2-2017 | 14         | 16         | 25                | 2017 | Multifunction Printers                                          | 110       | 1818                 | 25.08                      | 4.51                         | 70.41                        | 
 
   - ## industry_groups
-```
+```sql
 SELECT * FROM industry_groups LIMIT 5;
 ```
 
@@ -29,7 +29,7 @@ SELECT * FROM industry_groups LIMIT 5;
 | 5  | "Pharmaceuticals, Biotechnology & Life Sciences"                       | 
 
 - ## companies
-```
+```sql
 SELECT * FROM companies LIMIT 5;
 ```
 
@@ -42,7 +42,7 @@ SELECT * FROM companies LIMIT 5;
 | 5  | "Coca-Cola Enterprises, Inc." | 
 
 - ## countries
-```
+```sql
 SELECT * FROM countries LIMIT 5;
 ```
 
@@ -66,7 +66,7 @@ SELECT * FROM countries LIMIT 5;
 
 
 
-```
+```sql
 SELECT product_name,carbon_footprint_pcf FROM product_emissions GROUP BY product_name
 ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 ```
@@ -83,3 +83,33 @@ ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 | Mercedes-Benz GLE (GLE 500 4MATIC)                                                                                                 | 91000                | 
 | Mercedes-Benz S-Class (S 500)                                                                                                      | 85000                | 
 | Mercedes-Benz SL (SL 350)                                                                                                          | 72000                | 
+
+## The industry groups of these products
+
+```sql
+SELECT
+	DISTINCT indust.industry_group 
+FROM industry_groups indust
+JOIN product_emissions product 
+ON
+product.industry_group_id=indust.id
+WHERE product.product_name IN
+(SELECT product_name FROM product_emissions GROUP BY product_name
+ORDER BY carbon_footprint_pcf DESC) LIMIT 10;
+```
+
+| industry_group                                 | 
+| ---------------------------------------------: | 
+| "Food, Beverage & Tobacco"                     | 
+| Food & Beverage Processing                     | 
+| Capital Goods                                  | 
+| Technology Hardware & Equipment                | 
+| Materials                                      | 
+| "Textiles, Apparel, Footwear and Luxury Goods" | 
+| Consumer Durables & Apparel                    | 
+| Software & Services                            | 
+| Chemicals                                      | 
+| Semiconductors & Semiconductor Equipment       | 
+
+
+
