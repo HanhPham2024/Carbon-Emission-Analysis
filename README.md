@@ -175,8 +175,25 @@ GROUP BY c.country_name ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 
 ## The trend of carbon footprints (PCFs) over the years
 
+```sql
+SELECT year, SUM(carbon_footprint_pcf) FROM product_emissions GROUP BY year;
+```
 
-![Carbon-trend](Picture1.png)
+| year | SUM(carbon_footprint_pcf) | 
+| ---: | ------------------------: | 
+| 2013 | 503857                    | 
+| 2014 | 624226                    | 
+| 2015 | 10840415                  | 
+| 2016 | 1640182                   | 
+| 2017 | 340271                    | 
+
+![Carbon-trend](Picture1.png) 
+
+
+## Which industry groups has demonstrated the most notable decrease in carbon footprints (PCFs) over time
+
+
+
 
 
 
