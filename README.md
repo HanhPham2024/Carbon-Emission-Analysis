@@ -285,7 +285,7 @@ GROUP BY indust.industry_group, product.year ORDER BY carbon_footprint_pcf DESC;
 - Products contribute the most to carbon emissions: Wind Turbine G128 5 Megawats, Wind Turbine G132 5 Megawats, Wind Turbine G114 2 Megawats. These products are
 
 ```sql
-SELECT industry.industry_group
+SELECT DISTINCT(industry.industry_group)
 FROM product_emissions product
 JOIN
 industry_groups industry
@@ -296,9 +296,5 @@ WHERE product.product_name LIKE '%Wind Turbine G%';
 | industry_group                     | 
 | ---------------------------------: | 
 | Electrical Equipment and Machinery | 
-| Electrical Equipment and Machinery | 
-| Electrical Equipment and Machinery | 
-| Electrical Equipment and Machinery | 
-
 
 
