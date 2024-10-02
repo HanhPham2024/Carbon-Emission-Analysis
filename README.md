@@ -173,6 +173,11 @@ GROUP BY c.country_name ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 | Ireland      | 746                  | 
 | Indonesia    | 721                  | 
 
+## The trend of carbon footprints (PCFs) over the years
+
+file:///C:/Users/Admin/Desktop/HANH/SWISS%20CODING/Picture1.png
+
+
 
 
 
