@@ -196,6 +196,8 @@ SELECT year, SUM(carbon_footprint_pcf) FROM product_emissions GROUP BY year;
 
 
 
+![Carbon-trend]() 
+
 
 
 
