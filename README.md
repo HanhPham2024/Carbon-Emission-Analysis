@@ -196,7 +196,7 @@ SELECT year, SUM(carbon_footprint_pcf) FROM product_emissions GROUP BY year;
 
 
 
-![Carbon-trend]() 
+![Carbon-industry-pfc-overtime](https://github.com/HanhPham2024/Carbon-Emission-Analysis/blob/15d4d22849311e73b1e1caf468af6f52beb03045/pcf_industry.JPG) 
 
 
 
