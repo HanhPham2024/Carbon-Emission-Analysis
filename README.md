@@ -176,7 +176,7 @@ GROUP BY c.country_name ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 ## The trend of carbon footprints (PCFs) over the years
 
 
-![Carbon-trend](C:\Users\Admin\Desktop\HANH\SWISS CODING)
+![Carbon-trend](Picture1.png)
 
 
 
