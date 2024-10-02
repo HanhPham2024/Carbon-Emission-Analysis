@@ -279,6 +279,26 @@ GROUP BY indust.industry_group, product.year ORDER BY carbon_footprint_pcf DESC;
 
 ![Carbon-industry-pfc-overtime](https://github.com/HanhPham2024/Carbon-Emission-Analysis/blob/15d4d22849311e73b1e1caf468af6f52beb03045/pcf_industry.JPG) 
 
+# Insights and pattern:
+- Top 3 industries (highest carbon footprint namely Automobile, Pharmaceutical, and Media)
+  Missing carbon footprint in 2017 for automobile industry ==> Suspect data error
+- Products contribute the most to carbon emissions: Wind Turbine G128 5 Megawats, Wind Turbine G132 5 Megawats, Wind Turbine G114 2 Megawats. These products are
+
+```sql
+SELECT industry.industry_group
+FROM product_emissions product
+JOIN
+industry_groups industry
+ON industry.id=product.industry_group_id
+WHERE product.product_name LIKE '%Wind Turbine G%';
+```
+
+| industry_group                     | 
+| ---------------------------------: | 
+| Electrical Equipment and Machinery | 
+| Electrical Equipment and Machinery | 
+| Electrical Equipment and Machinery | 
+| Electrical Equipment and Machinery | 
 
 
 
