@@ -176,8 +176,83 @@ product_emissions product
 JOIN
 industry_groups indust
 ON indust.id=product.industry_group_id 
-GROUP BY indust.industry_group, product.year ORDER BY carbon_footprint_pcf DESC;
+GROUP BY indust.industry_group, product.year ORDER BY SUM(product.carbon_footprint_pcf) DESC;
 ```
+
+| industry_group                                                         | SUM(product.carbon_footprint_pcf) | year | 
+| ---------------------------------------------------------------------: | --------------------------------: | ---: | 
+| Electrical Equipment and Machinery                                     | 9801558                           | 2015 | 
+| Automobiles & Components                                               | 1404833                           | 2016 | 
+| Automobiles & Components                                               | 817227                            | 2015 | 
+| Automobiles & Components                                               | 230015                            | 2014 | 
+| Materials                                                              | 213137                            | 2017 | 
+| Materials                                                              | 200513                            | 2013 | 
+| Technology Hardware & Equipment                                        | 167361                            | 2014 | 
+| Automobiles & Components                                               | 130189                            | 2013 | 
+| Technology Hardware & Equipment                                        | 106157                            | 2015 | 
+| "Food, Beverage & Tobacco"                                             | 100289                            | 2016 | 
+| Capital Goods                                                          | 94949                             | 2017 | 
+| Capital Goods                                                          | 93699                             | 2014 | 
+| Materials                                                              | 88267                             | 2016 | 
+| Materials                                                              | 75678                             | 2014 | 
+| Chemicals                                                              | 62369                             | 2015 | 
+| Technology Hardware & Equipment                                        | 61100                             | 2013 | 
+| Capital Goods                                                          | 60190                             | 2013 | 
+| "Pharmaceuticals, Biotechnology & Life Sciences"                       | 40215                             | 2014 | 
+| "Pharmaceuticals, Biotechnology & Life Sciences"                       | 32271                             | 2013 | 
+| Technology Hardware & Equipment                                        | 27592                             | 2017 | 
+| Software & Services                                                    | 22856                             | 2015 | 
+| Software & Services                                                    | 22846                             | 2016 | 
+| Energy                                                                 | 10024                             | 2016 | 
+| Media                                                                  | 9645                              | 2013 | 
+| Media                                                                  | 9645                              | 2014 | 
+| "Forest and Paper Products - Forestry, Timber, Pulp and Paper, Rubber" | 8909                              | 2015 | 
+| "Mining - Iron, Aluminum, Other Metals"                                | 8181                              | 2015 | 
+| Capital Goods                                                          | 6369                              | 2016 | 
+| "Food, Beverage & Tobacco"                                             | 4995                              | 2013 | 
+| Capital Goods                                                          | 3505                              | 2015 | 
+| Consumer Durables & Apparel                                            | 3280                              | 2014 | 
+| "Food, Beverage & Tobacco"                                             | 3162                              | 2017 | 
+| Containers & Packaging                                                 | 2988                              | 2015 | 
+| Commercial & Professional Services                                     | 2890                              | 2016 | 
+| Consumer Durables & Apparel                                            | 2867                              | 2013 | 
+| "Food, Beverage & Tobacco"                                             | 2685                              | 2014 | 
+| Tires                                                                  | 2022                              | 2015 | 
+| Media                                                                  | 1919                              | 2015 | 
+| Media                                                                  | 1808                              | 2016 | 
+| Technology Hardware & Equipment                                        | 1566                              | 2016 | 
+| Consumer Durables & Apparel                                            | 1162                              | 2016 | 
+| Commercial & Professional Services                                     | 1157                              | 2013 | 
+| "Consumer Durables, Household and Personal Products"                   | 931                               | 2015 | 
+| Food & Staples Retailing                                               | 773                               | 2014 | 
+| Energy                                                                 | 750                               | 2013 | 
+| Commercial & Professional Services                                     | 741                               | 2017 | 
+| Food & Staples Retailing                                               | 706                               | 2015 | 
+| Software & Services                                                    | 690                               | 2017 | 
+| Commercial & Professional Services                                     | 477                               | 2014 | 
+| "Textiles, Apparel, Footwear and Luxury Goods"                         | 387                               | 2015 | 
+| Trading Companies & Distributors and Commercial Services & Supplies    | 239                               | 2015 | 
+| Telecommunication Services                                             | 183                               | 2015 | 
+| Telecommunication Services                                             | 183                               | 2014 | 
+| Software & Services                                                    | 146                               | 2014 | 
+| Food & Beverage Processing                                             | 141                               | 2015 | 
+| Utilities                                                              | 122                               | 2013 | 
+| Gas Utilities                                                          | 122                               | 2015 | 
+| Utilities                                                              | 122                               | 2016 | 
+| Telecommunication Services                                             | 52                                | 2013 | 
+| Semiconductors & Semiconductor Equipment                               | 50                                | 2014 | 
+| Retailing                                                              | 19                                | 2014 | 
+| Retailing                                                              | 11                                | 2015 | 
+| Software & Services                                                    | 6                                 | 2013 | 
+| Semiconductors & Semiconductor Equipment                               | 4                                 | 2016 | 
+| Semiconductors & Semiconductors Equipment                              | 3                                 | 2015 | 
+| Food & Staples Retailing                                               | 2                                 | 2016 | 
+| Tobacco                                                                | 1                                 | 2015 | 
+| "Food, Beverage & Tobacco"                                             | 0                                 | 2015 | 
+| Household & Personal Products                                          | 0                                 | 2013 | 
+
+
+
 
 | industry_group                                                         | SUM(product.carbon_footprint_pcf) | year | 
 | ---------------------------------------------------------------------: | --------------------------------: | ---: | 
