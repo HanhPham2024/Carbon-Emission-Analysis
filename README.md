@@ -1,6 +1,8 @@
 # Carbon-Emission-Analysis
 
-Now, let's look up the data
+Our dataset is compiled from publicly available data from nature.com and encompasses the product carbon footprints (PCF) for various companies. PCFs represent the greenhouse gas emissions associated with specific products, quantified in CO2 (carbon dioxide equivalent).
+
+Now, let's look up the data:
 
 - ## Product_emissions
 ```sql
