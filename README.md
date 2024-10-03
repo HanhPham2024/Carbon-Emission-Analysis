@@ -58,59 +58,34 @@ SELECT * FROM countries LIMIT 5;
 
 
 
-
-
-
 ## Which products contribute the most to carbon emissions?
-
-
 
 
 ```sql
 SELECT product_name,SUM(carbon_footprint_pcf) FROM product_emissions GROUP BY product_name
-ORDER BY SUM(carbon_footprint_pcf) DESC LIMIT 10;
+ORDER BY SUM(carbon_footprint_pcf) DESC LIMIT 3;
 ```
 
-| product_name                                                                                                                       | SUM(carbon_footprint_pcf) | 
-| ---------------------------------------------------------------------------------------------------------------------------------: | ------------------------: | 
-| Wind Turbine G128 5 Megawats                                                                                                       | 3718044                   | 
-| Wind Turbine G132 5 Megawats                                                                                                       | 3276187                   | 
-| Wind Turbine G114 2 Megawats                                                                                                       | 1532608                   | 
-| Wind Turbine G90 2 Megawats                                                                                                        | 1251625                   | 
-| TCDE                                                                                                                               | 198150                    | 
-| Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit.                                                                 | 191687                    | 
-| Retaining wall structure with a main wall (sheet pile): 136 tonnes of steel sheet piles and 4 tonnes of tierods per 100 meter wall | 167000                    | 
-| Electric Motor                                                                                                                     | 160655                    | 
-| Audi A6                                                                                                                            | 111282                    | 
-| Average of all GM vehicles produced and used in the 10 year life-cycle.                                                            | 100621                    | 
+| product_name                 | SUM(carbon_footprint_pcf) | 
+| ---------------------------: | ------------------------: | 
+| Wind Turbine G128 5 Megawats | 3718044                   | 
+| Wind Turbine G132 5 Megawats | 3276187                   | 
+| Wind Turbine G114 2 Megawats | 1532608                   | 
 
 
 ## The industry groups of these products
 
 ```sql
-SELECT
-	DISTINCT indust.industry_group 
-FROM industry_groups indust
-JOIN product_emissions product 
-ON
-product.industry_group_id=indust.id
-WHERE product.product_name IN
-(SELECT product_name FROM product_emissions GROUP BY product_name
-ORDER BY carbon_footprint_pcf DESC LIMIT 10;
+SELECT DISTINCT indust.industry_group
+FROM product_emissions product
+JOIN industry_groups indust
+ON product.industry_group_id=indust.id
+WHERE product.product_name LIKE '%Wind Turbine%';
 ```
 
-| industry_group                                 | 
-| ---------------------------------------------: | 
-| "Food, Beverage & Tobacco"                     | 
-| Food & Beverage Processing                     | 
-| Capital Goods                                  | 
-| Technology Hardware & Equipment                | 
-| Materials                                      | 
-| "Textiles, Apparel, Footwear and Luxury Goods" | 
-| Consumer Durables & Apparel                    | 
-| Software & Services                            | 
-| Chemicals                                      | 
-| Semiconductors & Semiconductor Equipment       | 
+| industry_group                     | 
+| ---------------------------------: | 
+| Electrical Equipment and Machinery | 
 
 
 
@@ -118,61 +93,62 @@ ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 
 ```sql
 SELECT
-	 indust.industry_group  
+     indust.industry_group, SUM(product.carbon_footprint_pcf) 
 FROM industry_groups indust
 JOIN product_emissions product 
 ON
 product.industry_group_id=indust.id
-WHERE product.product_name IN
-(SELECT product_name FROM product_emissions GROUP BY product_name
-ORDER BY carbon_footprint_pcf DESC) LIMIT 1;
+GROUP BY indust.industry_group
+ORDER BY SUM(product.carbon_footprint_pcf) DESC LIMIT 1;
 ```
 
-| industry_group             | 
-| -------------------------: | 
-| "Food, Beverage & Tobacco" | 
+| industry_group                     | SUM(product.carbon_footprint_pcf) | 
+| ---------------------------------: | --------------------------------: | 
+| Electrical Equipment and Machinery | 9801558                           | 
+
 
 
 ## the companies with the highest contribution to carbon emissions
 
 ```SQL
 SELECT
-	com.company_name
+	com.company_name,SUM(carbon_footprint_pcf) 
 FROM companies com
 JOIN product_emissions product 
 ON
 com.id=product.company_id
-GROUP BY com.company_name ORDER BY carbon_footprint_pcf DESC LIMIT 1;
+GROUP BY com.company_name ORDER BY SUM(carbon_footprint_pcf) DESC LIMIT 1;
 ```
 
-| company_name                           | 
-| -------------------------------------: | 
-| "Gamesa Corporación Tecnológica, S.A." | 
+| company_name                           | SUM(carbon_footprint_pcf) | 
+| -------------------------------------: | ------------------------: | 
+| "Gamesa Corporación Tecnológica, S.A." | 9778464                   | 
 
 
 ## the countries with the highest contribution to carbon emissions
 ```SQL
 SELECT
-	c.country_name, carbon_footprint_pcf
+	c.country_name, SUM(carbon_footprint_pcf)
 FROM countries c
 JOIN product_emissions product 
 ON
 c.id=product.country_id
-GROUP BY c.country_name ORDER BY carbon_footprint_pcf DESC LIMIT 10; 
+GROUP BY c.country_name ORDER BY SUM(carbon_footprint_pcf) DESC LIMIT 10; 
 ```
 
-| country_name | carbon_footprint_pcf | 
-| -----------: | -------------------: | 
-| Germany      | 21725                | 
-| South Korea  | 5846                 | 
-| Brazil       | 1750                 | 
-| Japan        | 1488                 | 
-| India        | 1282                 | 
-| Netherlands  | 1200                 | 
-| France       | 1102                 | 
-| South Africa | 968                  | 
-| Ireland      | 746                  | 
-| Indonesia    | 721                  | 
+| country_name | SUM(carbon_footprint_pcf) | 
+| -----------: | ------------------------: | 
+| Spain        | 9786130                   | 
+| Germany      | 2251225                   | 
+| Japan        | 653237                    | 
+| USA          | 518381                    | 
+| South Korea  | 186965                    | 
+| Brazil       | 169337                    | 
+| Luxembourg   | 167007                    | 
+| Netherlands  | 70417                     | 
+| Taiwan       | 62875                     | 
+| India        | 24574                     | 
+
 
 ## The trend of carbon footprints (PCFs) over the years
 
@@ -284,7 +260,7 @@ GROUP BY indust.industry_group, product.year ORDER BY carbon_footprint_pcf DESC;
 - Top 3 industries (highest carbon footprint namely Automobile, Pharmaceutical, and Media)
   Missing carbon footprint in 2017 for automobile industry ==> Suspect data error
   Media industry has demonstrated the most notable decrease in carbon footprints (PCFs) over time.
-- Products contribute the most to carbon emissions: Wind Turbine G128 5 Megawats, Wind Turbine G132 5 Megawats, Wind Turbine G114 2 Megawats. These products are
+- Products contribute the most to carbon emissions: Wind Turbine G128 5 Megawats, Wind Turbine G132 5 Megawats, Wind Turbine G114 2 Megawats. These products are belongs to:
 
 ```sql
 SELECT DISTINCT(industry.industry_group)
@@ -292,7 +268,7 @@ FROM product_emissions product
 JOIN
 industry_groups industry
 ON industry.id=product.industry_group_id
-WHERE product.product_name LIKE '%Wind Turbine G%';
+WHERE product.product_name LIKE '%Wind Turbine%';
 ```
 
 | industry_group                     | 
