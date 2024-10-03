@@ -260,8 +260,8 @@ GROUP BY indust.industry_group, product.year ORDER BY SUM(product.carbon_footpri
 
 # Insights and pattern:
 - Top 3 industries (highest carbon footprint namely Electrical Equipment and Machinery, Automobile, and Materials)
-  Missing carbon footprint in 2013,2014, 2016, 2017 for Electrical Equipment and Machinery ==> Suspect data error
-  It's seem not having any industry has demonstrated the most notable decrease in carbon footprints (PCFs) over time.
+- Missing carbon footprint in 2013,2014, 2016, 2017 for Electrical Equipment and Machinery ==> Suspect data error
+- It's seem not having any industry has demonstrated the most notable decrease in carbon footprints (PCFs) over time.
 - Products contribute the most to carbon emissions: Wind Turbine G128 5 Megawats, Wind Turbine G132 5 Megawats, Wind Turbine G114 2 Megawats. These products are belongs to:
 
 ```sql
