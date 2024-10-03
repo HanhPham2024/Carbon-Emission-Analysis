@@ -252,7 +252,7 @@ GROUP BY indust.industry_group, product.year ORDER BY SUM(product.carbon_footpri
 | Household & Personal Products                                          | 0                                 | 2013 | 
 
 
-![Carbon-industry-pfc-overtime](https://github.com/HanhPham2024/Carbon-Emission-Analysis/blob/15d4d22849311e73b1e1caf468af6f52beb03045/pcf_industry.JPG) 
+![Carbon-industry-pfc-overtime](pcf_industry2.JPG) 
 
 
 
