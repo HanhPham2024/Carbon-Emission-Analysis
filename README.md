@@ -96,7 +96,7 @@ ON
 product.industry_group_id=indust.id
 WHERE product.product_name IN
 (SELECT product_name FROM product_emissions GROUP BY product_name
-ORDER BY carbon_footprint_pcf DESC) LIMIT 10;
+ORDER BY carbon_footprint_pcf DESC LIMIT 10;
 ```
 
 | industry_group                                 | 
